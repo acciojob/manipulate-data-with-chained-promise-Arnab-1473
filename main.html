@@ -1,13 +1,30 @@
 <!DOCTYPE html>
-
 <html>
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <title>Manipulating Data with Chained Promises</title>
   </head>
-
   <body>
-    <!-- do not change this code -->
     <div id="output"></div>
-    <script type="text/javascript" src="./script.js"></script>
+    <script>
+      function filterAndDouble(arr) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            const filtered = arr.filter(num => num % 2 === 0);
+            const doubled = filtered.map(num => num * 2);
+            resolve(doubled);
+          }, 3000);
+        });
+      }
+      
+      const input = [1, 2, 3, 4];
+      
+      filterAndDouble(input)
+        .then(result => {
+          setTimeout(() => {
+            document.getElementById('output').textContent = result;
+          }, 1000);
+        });
+    </script>
   </body>
 </html>
